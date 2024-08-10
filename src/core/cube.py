@@ -6,7 +6,7 @@ from src.logging import get_logger
 logger = get_logger()
 
 class RubikCube:
-    def __init__(self, dimension: int = 4):
+    def __init__(self, dimension: int = 3):
         if dimension < 2:
             raise ValueError("Cube dimension must be at least 2")
         

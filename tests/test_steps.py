@@ -4,14 +4,7 @@ from src.core.steps import Step, rotate_face, rotate_adjacent_faces, apply_step,
 
 class TestSteps(unittest.TestCase):
     def setUp(self):
-        self.cube = np.array([
-            np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]]),  # Front
-            np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]]),  # Top
-            np.array([[2, 2, 2], [2, 2, 2], [2, 2, 2]]),  # Right
-            np.array([[3, 3, 3], [3, 3, 3], [3, 3, 3]]),  # Back
-            np.array([[4, 4, 4], [4, 4, 4], [4, 4, 4]]),  # Bottom
-            np.array([[5, 5, 5], [5, 5, 5], [5, 5, 5]])   # Left
-        ])
+        self.cube = np.array([np.full((3, 3), i) for i in range(6)])
 
     def test_rotate_face(self):
         rotated_cube = rotate_face(self.cube.copy(), 0, 1)
@@ -22,18 +15,18 @@ class TestSteps(unittest.TestCase):
 
     def test_rotate_adjacent_faces(self):
         rotated_cube = rotate_adjacent_faces(self.cube.copy(), 0, 1)
-        self.assertTrue(np.array_equal(rotated_cube[1][:, -1], [5, 5, 5]), f"Top face incorrect:\n{cube_state_str(rotated_cube)}")
-        self.assertTrue(np.array_equal(rotated_cube[2][:, 0], [1, 1, 1]), f"Right face incorrect:\n{cube_state_str(rotated_cube)}")
-        self.assertTrue(np.array_equal(rotated_cube[4][0, :], [2, 2, 2]), f"Bottom face incorrect:\n{cube_state_str(rotated_cube)}")
-        self.assertTrue(np.array_equal(rotated_cube[5][:, -1], [4, 4, 4]), f"Left face incorrect:\n{cube_state_str(rotated_cube)}")
+        self.assertTrue(np.array_equal(rotated_cube[1][:, -1], [5, 5, 5]))
+        self.assertTrue(np.array_equal(rotated_cube[2][:, 0], [1, 1, 1]))
+        self.assertTrue(np.array_equal(rotated_cube[4][0, :], [2, 2, 2]))
+        self.assertTrue(np.array_equal(rotated_cube[5][:, -1], [4, 4, 4]))
 
     def test_apply_step(self):
         step = Step(0, 1, 1)
         rotated_cube = apply_step(self.cube.copy(), step)
-        self.assertTrue(np.array_equal(rotated_cube[1][:, -1], [5, 5, 5]), f"Top face incorrect:\n{cube_state_str(rotated_cube)}")
-        self.assertTrue(np.array_equal(rotated_cube[2][:, 0], [1, 1, 1]), f"Right face incorrect:\n{cube_state_str(rotated_cube)}")
-        self.assertTrue(np.array_equal(rotated_cube[4][0, :], [2, 2, 2]), f"Bottom face incorrect:\n{cube_state_str(rotated_cube)}")
-        self.assertTrue(np.array_equal(rotated_cube[5][:, -1], [4, 4, 4]), f"Left face incorrect:\n{cube_state_str(rotated_cube)}")
+        self.assertTrue(np.array_equal(rotated_cube[1][:, -1], [5, 5, 5]))
+        self.assertTrue(np.array_equal(rotated_cube[2][:, 0], [1, 1, 1]))
+        self.assertTrue(np.array_equal(rotated_cube[4][0, :], [2, 2, 2]))
+        self.assertTrue(np.array_equal(rotated_cube[5][:, -1], [4, 4, 4]))
 
     def test_apply_steps(self):
         steps = [
@@ -45,15 +38,13 @@ class TestSteps(unittest.TestCase):
         
         self.assertFalse(np.array_equal(rotated_cube, self.cube))
         for i in range(6):
-            self.assertFalse(np.array_equal(rotated_cube[i], self.cube[i]),
-                             f"Face {i} did not change:\n{cube_state_str(rotated_cube)}")
+            self.assertFalse(np.array_equal(rotated_cube[i], self.cube[i]))
 
     def test_multiple_rotations(self):
         step = Step(0, 1, 4)
         rotated_cube = apply_step(self.cube.copy(), step)
         for i in range(6):
-            self.assertTrue(np.array_equal(rotated_cube[i], self.cube[i]),
-                            f"Face {i} changed unexpectedly:\n{cube_state_str(rotated_cube)}")
+            self.assertTrue(np.array_equal(rotated_cube[i], self.cube[i]))
 
 if __name__ == '__main__':
     unittest.main()
