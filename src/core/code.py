@@ -28,4 +28,5 @@ class CubeCodeGenerator:
 
     def key_decode(self) -> List[Step]:
         logger.info("Generating decoding steps")
-        return [Step(step.face, -step.direction, step.rotations) for step in reversed(self._generate_steps())]
+        encode_steps = self.key_encode()  # Generate the same encoding steps
+        return [Step(step.face, -step.direction, step.rotations) for step in reversed(encode_steps)]

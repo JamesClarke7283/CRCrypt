@@ -156,6 +156,7 @@ packages = ["src"]
 
 [project.scripts]
 crcrypt = "src.cli:main"
+crcrypt-gui = "src.gui:main"
 
 [tool.black]
 line-length = 100
