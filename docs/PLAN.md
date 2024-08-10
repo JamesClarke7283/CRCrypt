@@ -121,6 +121,9 @@ If a key leads to a solved state of the rubics cube, then the Decryption is suce
 We use the unittest module for testing.
 We need to test the encryption, decryption, and the ability to change the state of the virtual cube correctly.
 
+## Cube representation
+The cube is represented as 6 arrays of arrays(numpy ones), each array is a face of the cube, each entry in the cube is a integer from 0-5, its dimentiones are controlled at initialisation in the constructor.
+
 ## Future Improvements (Not in current version)
 
 ## Dynamic Cube Size
