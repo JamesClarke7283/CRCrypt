@@ -1,4 +1,4 @@
-# Clarke Rubik Crypt Plan
+# Clarke Rubik Cryptography Plan
 
 Is a stream cipher, that uses a virtual rubiks Cube as the problem to solve, as its easy to shuffle but hard to unshuffle if you don't know how it was shuffled.
 The keystream is generated as bytes, under the hood its derived from the `Virtual Steps` detailed in the appropriately titled heading below.
