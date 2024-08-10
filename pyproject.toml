@@ -3,9 +3,9 @@ requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "PixelArcade"
+name = "CRCrypt"
 dynamic = ["version"]
-description = "Enjoy Classic and Modern Arcade games in one program."
+description = "Clarke's Rubiks Cryptographic Cipher. Uses a virtual rubiks cube as a cipher."
 authors = [
     {name = "James David Clarke", email = "james@jamesdavidclarke.com"},
 ]
@@ -23,7 +23,9 @@ dependencies = [
     "numpy",
     "python-dotenv",
     "coloredlogs",
-    "appdirs"
+    "appdirs",
+    "pygame",
+    "customtkinter"
 ]
 
 [project.optional-dependencies]
@@ -34,14 +36,14 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/JamesClarke7283/CRubeCrypt"
-"Bug Tracker" = "https://github.com/JamesClarke7283/CRubeCrypt/issues"
+Homepage = "https://github.com/JamesClarke7283/CRCrypt"
+"Bug Tracker" = "https://github.com/JamesClarke7283/CRCrypt/issues"
 
 [tool.setuptools]
 packages = ["src"]
 
 [project.scripts]
-crubecrypt = "src.cli:main"
+crcrypt = "src.cli:main"
 
 [tool.black]
 line-length = 100
